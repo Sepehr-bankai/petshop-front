@@ -4,3 +4,33 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 .nav-actions{display:flex;align-items:center;gap:8px}.language{width:42px;height:42px;border:0;border-radius:50%;background:#edf9fe;color:var(--ink);font:700 .78rem inherit;cursor:pointer}.language:hover{background:var(--yellow)}
 [dir="rtl"] body{font-family:Vazirmatn,sans-serif}[dir="rtl"] h1,[dir="rtl"] h2{font-family:Vazirmatn,sans-serif;letter-spacing:-.04em;line-height:1.15}[dir="rtl"] .eyebrow,[dir="rtl"] .step{letter-spacing:0;text-transform:none}[dir="rtl"] .float-card>b,[dir="rtl"] .pet-id>b{margin-left:0;margin-right:auto}[dir="rtl"] .passport-head small{margin-left:auto;margin-right:10px}[dir="rtl"] .story-copy li span{margin-right:0;margin-left:10px}[dir="rtl"] .avatars b{margin-right:0;margin-left:-8px}[dir="rtl"] .text-link span,[dir="rtl"] .button span{transform:scaleX(-1)}
+
+/* Cinematic image stages: native 16:9, no mask, no subject crop. */
+.animal-frame{aspect-ratio:16/9;height:auto;overflow:visible;border-radius:0;background:linear-gradient(135deg,#e7f7ff,#fff8dc);box-shadow:0 24px 65px rgba(42,79,98,.16)}
+.animal-frame>img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:0;filter:none;background:#edf7fb;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}
+.hero-visual,.portrait{height:auto;aspect-ratio:16/9;border-radius:0}
+.orbit{pointer-events:none}
+.final{padding-bottom:70px}.final-pets{width:min(1080px,90vw);height:auto;margin:50px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}.final-pets img,.final-pets img:nth-child(2){width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:0;margin:0;filter:none;box-shadow:var(--shadow)}
+@media(max-width:900px){.hero-visual,.portrait{height:auto}.animal-frame{aspect-ratio:16/9}.final-pets{grid-template-columns:1fr}}
+@media(max-width:540px){.float-card{max-width:82%;transform-origin:center}.health-card{top:6%}.visit-card{bottom:6%}.profile-card,.shop-card,.sync-card,.reminder-card,.passport-card{left:4%;right:4%;bottom:-18%}.story{padding-bottom:130px}}
+
+/* Full-bleed product chapters. The sharp image always stays fully visible. */
+.hero,.story{position:relative;isolation:isolate;overflow:hidden;min-height:100svh}
+.hero{display:grid;grid-template-columns:1fr;align-items:start;padding:clamp(120px,15vh,165px) 6vw 70px;background:#eef8fc}
+.hero-copy{position:relative;z-index:5;width:min(720px,55vw);max-width:none}
+.hero-visual,.story .portrait{position:absolute;inset:0;z-index:0;width:auto;height:auto;aspect-ratio:auto;background:#dfeef3;box-shadow:none;overflow:hidden}
+.animal-frame::before{content:"";position:absolute;inset:-3%;z-index:0;background:var(--section-image) center/cover no-repeat;filter:blur(24px) saturate(.72);opacity:.42;transform:scale(1.06)}
+.animal-frame::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(244,251,254,.96) 0%,rgba(244,251,254,.76) 30%,rgba(244,251,254,.08) 62%,rgba(244,251,254,.12) 100%);pointer-events:none}
+.animal-frame>img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;background:transparent;box-shadow:none}
+.hero .animal-frame::after{background:linear-gradient(90deg,rgba(247,252,255,.98) 0%,rgba(247,252,255,.86) 37%,rgba(247,252,255,.08) 68%),linear-gradient(0deg,rgba(247,252,255,.5),transparent 42%)}
+.hero .health-card{left:auto;right:6%;top:22%}.hero .visit-card{right:8%;bottom:14%}
+.story{display:grid;grid-template-columns:1fr;align-items:end;padding:110px 6vw 7vh;background:#eaf7fc}
+.story .story-copy{position:relative;z-index:5;width:min(580px,48vw);max-width:none;padding:clamp(24px,3vw,42px);margin:0;background:rgba(255,255,255,.78);backdrop-filter:blur(22px);box-shadow:0 24px 70px rgba(20,52,71,.13)}
+.story .story-copy>p:not(.step){color:#526c7a}
+.story .profile-card,.story .shop-card,.story .sync-card,.story .reminder-card{left:auto;right:5%;bottom:7%;width:min(360px,34vw)}
+.story .passport-card{left:auto;right:5%;bottom:7%;width:min(400px,36vw)}
+.story.sky,.story.cream,.story.white,.story.yellow,.story.ice{background:#eaf7fc}
+.story:nth-child(even) .animal-frame::after{background:linear-gradient(90deg,rgba(244,251,254,.86),rgba(244,251,254,.08) 55%,rgba(255,248,220,.14))}
+.scroll-note{z-index:6}
+@media(max-width:900px){.hero{padding:116px 22px 54px;align-items:start;background:#eef8fc}.hero-copy{width:min(680px,92vw)}.hero .animal-frame::after{background:linear-gradient(180deg,rgba(247,252,255,.98) 0%,rgba(247,252,255,.72) 47%,rgba(247,252,255,.08) 75%)}.hero .health-card{top:auto;left:20px;right:auto;bottom:18%}.hero .visit-card{right:20px;bottom:7%}.story{min-height:max(100svh,780px);padding:100px 22px 34px;align-items:end}.story .story-copy{width:min(620px,100%);padding:26px}.story .animal-frame::after,.story:nth-child(even) .animal-frame::after{background:linear-gradient(0deg,rgba(244,251,254,.98) 0%,rgba(244,251,254,.82) 43%,rgba(244,251,254,.04) 72%)}.story .profile-card,.story .shop-card,.story .sync-card,.story .reminder-card,.story .passport-card{top:100px;bottom:auto;left:auto;right:20px;width:min(350px,76vw)}}
+@media(max-width:540px){.hero{min-height:900px}.hero-copy{width:100%}.hero h1{font-size:clamp(2.9rem,12vw,4.6rem)}.hero .health-card{bottom:15%}.hero .visit-card{bottom:5%}.story{min-height:940px;padding-inline:14px}.story .story-copy{padding:22px 18px}.story .story-copy h2{font-size:clamp(2.45rem,11vw,3.8rem)}.story .profile-card,.story .shop-card,.story .sync-card,.story .reminder-card,.story .passport-card{top:94px;right:14px;max-width:86vw}.final-pets{display:none}}

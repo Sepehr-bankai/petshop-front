@@ -1,5 +1,22 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// ponytail: one list is the only place to swap section photography.
+const IMAGE_ASSETS = [
+  ['assets/first-pic-for-indexhtml.jpg', 'Curious brown dog looking toward the camera'],
+  ['assets/qweqweqwe.jpg', 'Beagle peeking through a bright opening'],
+  ['assets/ewrewrwrwr.jpg', 'Relaxed long-haired cat resting on a blanket'],
+  ['assets/erwerwer.jpg', 'Golden dog standing in warm evening light'],
+  ['assets/679686.jpg', 'Curious cat looking closely toward the camera'],
+  ['assets/867676.jpg', 'French bulldog in a green jacket']
+];
+
+document.querySelectorAll('[data-image]').forEach(image => {
+  const [src, alt] = IMAGE_ASSETS[image.dataset.image];
+  image.src = src;
+  if (!image.hasAttribute('alt')) image.alt = alt;
+  image.closest('.animal-frame')?.style.setProperty('--section-image', `url("${src}")`);
+});
+
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!reduced) {
@@ -15,10 +32,12 @@ if (!reduced) {
     const copy = section.querySelectorAll('.story-copy > *');
     const card = section.querySelector('.float-card, .passport-card');
     const tl = gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 68%', end: 'bottom 35%', toggleActions: 'play none none reverse' } });
-    tl.from(image, { scale: 1.08, opacity: .35, duration: 1.25, ease: 'power3.out' })
+    tl.from(section, { opacity: .45, duration: .9, ease: 'power2.out' })
+      .from(image, { y: 18, opacity: .35, duration: 1.25, ease: 'power3.out' }, '<')
       .from(copy, { y: 42, opacity: 0, stagger: .1, duration: .75, ease: 'power3.out' }, '<.15');
     if (card) tl.from(card, { y: 45, opacity: 0, rotate: index % 2 ? 2 : -2, duration: .75, ease: 'back.out(1.3)' }, '-=.45');
-    gsap.to(image, { yPercent: -5, ease: 'none', scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
+    gsap.fromTo(image, { yPercent: 1.5 }, { yPercent: -1.5, ease: 'none', scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
+    if (card) gsap.to(card, { yPercent: -10, ease: 'none', scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1.4 } });
   });
 
   gsap.from('.intro > *', { y: 35, opacity: 0, stagger: .12, duration: .8, scrollTrigger: { trigger: '.intro', start: 'top 75%' } });
